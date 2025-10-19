@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AetherProxy Browser</title>
+<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/892/892781.png" type="image/png">
+
+<style>
+:root {
+  --accent: #5b7fff;
+  --bg-blur: rgba(25,25,25,0.6);
+  --bg: #121212;
+  --fg: #ffffff;
+  --tab-bg: rgba(40,40,40,0.7);
+  --tab-active: rgba(80,80,80,0.9);
+  --font: "Inter", "Segoe UI", sans-serif;
+}
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--fg);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+}
+
+/* Tabs */
+#tab-bar {
+  display: flex;
+  gap: 6px;
+  padding: 8px;
+  background: var(--bg-blur);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.tab {
+  background: var(--tab-bg);
+  padding: 6px 12px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.tab.active {
+  background: var(--tab-active);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+.tab button {
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 14px;
+  cursor: pointer;
+}
+.tab:hover { background: rgba(70,70,70,0.8); }
+#add-tab {
+  width: 26px;
+  height: 26px;
+  background: var(--tab-bg);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Top bar */
+header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-blur);
+  backdrop-filter: blur(20px);
+  padding: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+#url {
+  flex: 1;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.08);
+  color: var(--fg);
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+}
+button {
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+button:hover { opacity: 0.8; }
+.icon {
+  background: none;
+  color: var(--fg);
+  font-size: 18px;
+  padding: 5px;
+}
+
+/* Panels */
+.panel {
+  position: absolute;
+  top: 70px;
+  right: 10px;
+  width: 320px;
+  max-height: 80vh;
+  overflow-y: auto;
+  background: var(--bg-blur);
+  backdrop-filter: blur(15px);
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+  display: none;
+  z-index: 10;
+}
+.panel h3 { margin-top: 0; }
+
+#browser {
+  flex: 1;
+  position: relative;
+}
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Homepage */
+#homepage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  transition: opacity 0.3s;
+}
+#homepage h1 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+#home-search {
+  width: 60%;
+  max-width: 500px;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255,255,255,0.1);
+  color: var(--fg);
+  text-align: center;
+}
+#pinned {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 20px;
+  max-width: 400px;
+}
+.pinned-app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--fg);
+  text-decoration: none;
+  font-size: 14px;
+}
+.pinned-app img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 6px;
+  border-radius: 10px;
+}
+
+/* Theme maker inputs */
+#themeMaker label {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+}
+#themeMaker input {
+  width: 100%;
+  padding: 4px;
+  border-radius: 5px;
+  border: none;
+  background: rgba(255,255,255,0.1);
+  color: var(--fg);
+}
+</style>
+</head>
+<body>
+
+<div id="tab-bar"><div id="add-tab">+</div></div>
+
+<header>
+  <input id="url" placeholder="Enter URL or search" />
+  <button id="go">Go</button>
+  <button class="icon" id="bookmarksBtn">★</button>
+  <button class="icon" id="settingsBtn">⚙️</button>
+</header>
+
+<div id="browser">
+  <div id="homepage">
+    <h1>AetherProxy</h1>
+    <input id="home-search" placeholder="Search with DuckDuckGo..." />
+    <div id="pinned"></div>
+  </div>
+</div>
+
+<!-- Bookmarks -->
+<div id="bookmarksPanel" class="panel">
+  <h3>Bookmarks</h3>
+  <ul id="bookmarksList"></ul>
+  <h4>Add Bookmark</h4>
+  <input id="bmName" placeholder="Name" />
+  <input id="bmUrl" placeholder="URL" />
+  <button id="saveBookmark">Save</button>
+</div>
+
+<!-- Settings -->
+<div id="settingsPanel" class="panel">
+  <h3>Settings</h3>
+  <label><input type="checkbox" id="blankOnStart"> Open AetherProxy inside about:blank (replace tab with Classroom)</label>
+  <select id="blankMode">
+    <option value="tab">New Tab</option>
+    <option value="window">New Window</option>
+  </select>
+  <hr/>
+  <h4>Theme</h4>
+  <input type="file" id="themeFile" accept=".json" />
+  <button id="exportTheme">Export Current Theme</button>
+  <hr/>
+  <h4>Built-in Theme Maker</h4>
+  <div id="themeMaker">
+    <label>Accent Color</label><input type="color" id="accentInput">
+    <label>Background</label><input type="color" id="bgInput">
+    <label>Foreground</label><input type="color" id="fgInput">
+    <label>Font Family</label><input type="text" id="fontInput" placeholder="Inter, Arial, etc.">
+    <button id="applyTheme">Apply</button>
+  </div>
+</div>
+
+<script>
+let tabs = [];
+let currentTab = null;
+const homepage = document.getElementById("homepage");
+
+function createTab(url = "home") {
+  const id = Date.now().toString();
+  const iframe = document.createElement("iframe");
+  iframe.dataset.id = id;
+  iframe.style.display = "none";
+
+  if (url !== "home") {
+    iframe.src = url.startsWith("http") ? url : `https://duckduckgo.com/?q=${encodeURIComponent(url)}`;
+    homepage.style.display = "none";
+  }
+
+  const tab = document.createElement("div");
+  tab.classList.add("tab");
+  tab.dataset.id = id;
+  tab.innerHTML = `<span>${url === "home" ? "New Tab" : new URL(iframe.src).hostname}</span> <button class="close">×</button>`;
+  tab.querySelector(".close").onclick = e => { e.stopPropagation(); closeTab(id); };
+  tab.onclick = () => switchTab(id);
+
+  document.getElementById("tab-bar").insertBefore(tab, document.getElementById("add-tab"));
+  document.getElementById("browser").appendChild(iframe);
+  tabs.push({ id, iframe, tab, url });
+  switchTab(id);
+}
+
+function switchTab(id) {
+  tabs.forEach(t => {
+    t.iframe.style.display = t.id === id ? "block" : "none";
+    t.tab.classList.toggle("active", t.id === id);
+  });
+  const t = tabs.find(t => t.id === id);
+  homepage.style.display = t && t.url === "home" ? "flex" : "none";
+  currentTab = id;
+}
+
+function closeTab(id) {
+  const t = tabs.find(t => t.id === id);
+  if (!t) return;
+  t.iframe.remove();
+  t.tab.remove();
+  tabs = tabs.filter(x => x.id !== id);
+  if (tabs.length) switchTab(tabs[tabs.length - 1].id);
+  else createTab("home");
+}
+
+document.getElementById("add-tab").onclick = () => createTab("home");
+document.getElementById("go").onclick = () => {
+  const val = document.getElementById("url").value.trim();
+  const current = tabs.find(t => t.id === currentTab);
+  if (!val || !current) return;
+  if (val.startsWith("javascript:")) current.iframe.contentWindow.eval(val.replace("javascript:", ""));
+  else {
+    current.url = val;
+    current.iframe.src = val.startsWith("http") ? val : `https://duckduckgo.com/?q=${encodeURIComponent(val)}`;
+    current.tab.querySelector("span").textContent = new URL(current.iframe.src).hostname;
+    homepage.style.display = "none";
+  }
+};
+
+document.getElementById("home-search").addEventListener("keypress", e => {
+  if (e.key === "Enter") {
+    const q = e.target.value;
+    createTab(`https://duckduckgo.com/?q=${encodeURIComponent(q)}`);
+  }
+});
+
+/* Panels */
+const togglePanel = id => {
+  const panel = document.getElementById(id);
+  const visible = panel.style.display === "block";
+  document.querySelectorAll(".panel").forEach(p => p.style.display = "none");
+  if (!visible) panel.style.display = "block";
+};
+document.getElementById("bookmarksBtn").onclick = () => togglePanel("bookmarksPanel");
+document.getElementById("settingsBtn").onclick = () => togglePanel("settingsPanel");
+document.addEventListener("click", e => {
+  if (![...document.querySelectorAll(".panel, .icon")].some(el => el.contains(e.target))) {
+    document.querySelectorAll(".panel").forEach(p => p.style.display = "none");
+  }
+});
+
+/* Bookmarks */
+let bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+const renderBookmarks = () => {
+  const ul = document.getElementById("bookmarksList");
+  ul.innerHTML = "";
+  bookmarks.forEach(bm => {
+    const li = document.createElement("li");
+    li.innerHTML = `<a href="#">${bm.name}</a>`;
+    li.querySelector("a").onclick = () => createTab(bm.url);
+    ul.appendChild(li);
+  });
+};
+renderBookmarks();
+document.getElementById("saveBookmark").onclick = () => {
+  const name = bmName.value.trim(), url = bmUrl.value.trim();
+  if (!name || !url) return alert("Missing fields!");
+  bookmarks.push({ name, url });
+  localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+  renderBookmarks();
+  bmName.value = bmUrl.value = "";
+};
+
+/* About:blank + Classroom startup */
+const blankOnStart = document.getElementById("blankOnStart");
+const blankMode = document.getElementById("blankMode");
+const savedSettings = JSON.parse(localStorage.getItem("aetherSettings") || "{}");
+if (savedSettings.blankOnStart) blankOnStart.checked = true;
+if (savedSettings.blankMode) blankMode.value = savedSettings.blankMode;
+blankOnStart.onchange = blankMode.onchange = () => {
+  localStorage.setItem("aetherSettings", JSON.stringify({
+    blankOnStart: blankOnStart.checked,
+    blankMode: blankMode.value
+  }));
+};
+window.onload = () => {
+  if (blankOnStart.checked) {
+    if (blankMode.value === "window") {
+      const win = window.open("about:blank");
+      win.document.write(`<iframe src="${location.href}" style="width:100%;height:100%;border:none;"></iframe>`);
+      location.replace("https://classroom.google.com");
+    } else {
+      const blank = window.open("about:blank", "_self");
+      blank.document.write(`<iframe src="${location.href}" style="width:100%;height:100%;border:none;"></iframe>`);
+      location.replace("https://classroom.google.com");
+    }
+  }
+};
+
+/* Theme upload/export/maker */
+themeFile.onchange = e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  file.text().then(json => {
+    const theme = JSON.parse(json);
+    for (const key in theme) {
+      document.documentElement.style.setProperty(`--${key}`, theme[key]);
+    }
+  });
+};
+document.getElementById("exportTheme").onclick = () => {
+  const theme = {
+    accent: getComputedStyle(document.documentElement).getPropertyValue("--accent").trim(),
+    bg: getComputedStyle(document.documentElement).getPropertyValue("--bg").trim(),
+    fg: getComputedStyle(document.documentElement).getPropertyValue("--fg").trim(),
+    font: getComputedStyle(document.documentElement).getPropertyValue("--font").trim()
+  };
+  const blob = new Blob([JSON.stringify(theme, null, 2)], {type: "application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "aetherproxy-theme.json";
+  a.click();
+};
+
+/* Built-in theme maker */
+const applyTheme = () => {
+  const accent = accentInput.value, bg = bgInput.value, fg = fgInput.value, font = fontInput.value;
+  document.documentElement.style.setProperty("--accent", accent);
+  document.documentElement.style.setProperty("--bg", bg);
+  document.documentElement.style.setProperty("--fg", fg);
+  document.documentElement.style.setProperty("--font", font);
+};
+document.getElementById("applyTheme").onclick = applyTheme;
+
+/* Pinned apps */
+const pinnedApps = [
+  { name: "YouTube", url: "https://youtube.com", icon: "https://www.youtube.com/s/desktop/6e143bfa/img/favicon_144.png" },
+  { name: "DuckDuckGo", url: "https://duckduckgo.com", icon: "https://duckduckgo.com/favicon.ico" },
+  { name: "Reddit", url: "https://reddit.com", icon: "https://www.redditstatic.com/desktop2x/img/favicon/apple-icon-120x120.png" }
+];
+const pinnedDiv = document.getElementById("pinned");
+pinnedApps.forEach(app => {
+  const a = document.createElement("a");
+  a.className = "pinned-app";
+  a.href = "#";
+  a.innerHTML = `<img src="${app.icon}"><span>${app.name}</span>`;
+  a.onclick = () => createTab(app.url);
+  pinnedDiv.appendChild(a);
+});
+
+/* Startup */
+createTab("home");
+</script>
+</body>
+</html>
