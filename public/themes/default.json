@@ -1,0 +1,13 @@
+{
+  "name": "Default",
+  "topBarBackground": "#ddd",
+  "topBarColor": "#000",
+  "tabActiveBackground": "#fff",
+  "tabInactiveBackground": "#ccc",
+  "tabColor": "#000",
+  "navBarBackground": "#eee",
+  "navBarColor": "#000",
+  "favoritesBarBackground": "#f9f9f9",
+  "favoritesBarColor": "#000",
+  "fontFamily": "Segoe UI, Tahoma, Geneva, Verdana, sans-serif"
+}
