@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: mini-proxy-browser
+    env: node
+    plan: free
+    region: oregon
+    branch: main
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production

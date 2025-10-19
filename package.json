@@ -1,0 +1,20 @@
+{
+  "name": "mini-proxy-browser",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A simple educational proxy browser with address bar, back/forward, DuckDuckGo search, and favorites.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": "22.x"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cheerio": "^1.0.0-rc.12",
+    "express-rate-limit": "^6.7.0",
+    "node-fetch": "^3"
+  },
+  "license": "MIT"
+}
