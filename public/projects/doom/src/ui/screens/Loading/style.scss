@@ -1,0 +1,29 @@
+.loading-screen {
+  background-image: url(./splash.png);
+  background-size: cover;
+  position: absolute;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  color: white;
+  font-family: "Gill Sans", sans-serif;
+
+  .wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+
+    overflow: hidden;
+
+    div {
+      margin-left: 10px;
+      margin-bottom: 2px;
+    }
+
+    padding-bottom: 5px;
+  }
+}

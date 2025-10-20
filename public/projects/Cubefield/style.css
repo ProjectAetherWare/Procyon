@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@500&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Lexend', sans-serif;
+  background-color: #222324;
+}
+
+.show-score .score {
+  top: 1cm;
+}
+
+.score {
+  position: fixed;
+  color: white;
+  font-size: 2em;
+  width: 100%;
+  text-align: center;
+  top: -1cm;
+  text-transform: full-width;
+  transition: top 300ms;
+}
+
+.show-tutorial .tutorial {
+  bottom: 1.5cm;
+}
+
+.tutorial {
+  position: fixed;
+  bottom: -2cm;
+  color: white;
+  width: calc(100vw - 6cm);
+  text-shadow: 0px 0px 15px #000000;
+  left: 3cm;
+  text-align: center;
+  text-transform: uppercase;
+  pointer-events: none;
+  line-height: 1.5em;
+  letter-spacing: 2px;
+  transition: bottom 300ms;
+}
+
+.show-death-screen .death-overlay {
+  top: 0;
+}
+
+.renderer {
+  display: block;
+  transition: filter 300ms;
+}
+
+.show-death-screen .renderer {
+  filter: blur(15px);
+}
+
+.death-overlay {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  top: 120vh;
+  height: 100%;
+  text-align: center;
+  color: white;
+  margin-bottom: 5cm;
+  transition: top 400ms;
+  z-index: 2;
+}
+
+.death-overlay:last-child {
+  margin-bottom: 3cm;
+}
+
+.death-overlay button {
+  display: inline-flex;
+  gap: 5px;
+  margin-bottom: 2mm;
+  justify-content: center;
+  font: inherit;
+  color: white;
+  border: none;
+  border-radius: 1mm;
+  background-color: cornflowerblue;
+  padding: 4mm;
+  width: 4cm;
+}
+
+.show-touch-controls .touch-controls {
+  bottom: 0;
+}
+
+.show-death-screen .touch-controls {
+  bottom: -3cm !important;
+}
+
+.touch-controls {
+  position: fixed;
+  display: flex;
+  bottom: -3cm;
+  padding: 8mm;
+  justify-content: space-between;
+  width: calc(100% - 1.6cm);
+  transition: bottom 300ms;
+}
+
+.show-fullscreen-button .btn-fullscreen {
+  top: 8mm;
+}
+
+body > .btn-fullscreen {
+  position: fixed !important;
+  right: 8mm;
+  top: -2cm;
+
+  cursor: pointer;
+  font-size: 2em !important;
+  padding: 2mm !important;
+  transition: top 300ms;
+  z-index: 100;
+}
+
+.overlay-button {
+  position: relative;
+  display: block;
+  font-size: 3em !important;
+  border-radius: 100%;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background-color: #00000052;
+  padding: 3mm;
+  transition: color 100ms;
+  user-select: none;
+  border: none;
+  color: white;
+}
+
+.touch-controls.overlay-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+}

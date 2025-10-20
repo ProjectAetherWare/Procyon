@@ -1,0 +1,360 @@
+[Sandboxels Controls]
+Left Click        =  Place Pixels
+Right Click       =  Erase Pixels
+Middle Click      =  Pick Element
+Space or P        =  Pause Simulation
+Shift + Heat      =  Intense Heating
+Shift + Cool      =  Intense Cooling
+Shift + Mix       =  Include Fire & Smoke in Mixing
+Shift + Shock     =  Intense Shock
+Shift + Mouse     =  Draw Line
+Scroll            =  Change Cursor Size
+- or [            =  Decrease Cursor Size
++ or ]            =  Increase Cursor Size
+Shift + -         =  Set Cursor Size to 1
+Shift + +         =  Increase Cursor Size
+Left/Right Arrow  =  Change Category
+E                 =  Element Selection
+/ or I            =  Element Info Screen
+\                 =  Settings Menu
+M                 =  Mod Manager
+>                 =  Step
+F or F11          =  Toggle Fullscreen
+1 or 0            =  Normal View
+2                 =  Thermal View
+3                 =  Basic View (No Effects)
+4                 =  Smooth View
+F1                =  Toggle GUI / HUD
+F2 or C           =  Capture Screenshot
+
+(Alt/Option can be used in place of Shift)
+
+[Button Info]
+Pause           =  Pause/play the simulation
+Step            =  Run a single frame
+Minus           =  Decrease the cursor size
+Plus            =  Increase the cursor size
+Reset           =  Clears the entire simulation
+Replace         =  Overrides pixels when placing
+E               =  Select any element by name
+TPS             =  Change how fast the simulation runs
+Info            =  Brings up the element info screen
+Mods            =  Opens the Mod Manager
+Settings        =  Opens the Settings Menu
+
+[Mods List]
+Top-rated Mods
+chem.js	Several chemistry and physics-related elements	lllllllllwith10ls
+aChefsDream.js	More foods, animals, tools, and other cooking items [YouTube Playlist]	SquareScreamYT
+delete_all_of_element.js	Tool that deletes every pixel of the element(s) the user clicks on	Alice
+survival.js	With limited resources, you must craft, sell, and buy to progress	R74n
+alchemy.js	Start with only 4 elements and unlock more by reacting them together (Most are not possible)	R74n
+nousersthings.js	Many chemical elements, compounds, and more	nousernamefound
+spring.js	Many nature elements, like sakura trees, butterflies, beehives, and more	R74n
+elementsManager.js	Create and edit custom elements	ggod
+weapons.js	Variety of different weapons	Jayd
+fey_and_more.js	Fairies, magic, and a lot of other things	Melecie
+Official
+alchemy.js	Start with only 4 elements and unlock more by reacting them together (Most are not possible)	R74n
+building.js	Building generators and materials	R74n
+classic_explosives.js	Re-adds 4 explosives removed in v1.9.3	R74n
+classic_textures.js	Use textures from early versions of the game	R74n
+color_everything.js	Allows every element to have a custom color	R74n
+devtests.js	Experimental features from the Sandboxels developer	R74n
+edible_everything.js	Allows every element to be mixed into Batter and Dough	R74n
+fools.js	Re-adds FOOLS Mode	R74n
+fools24.js	Re-adds the 2024 Multiversal Update (v5.9.1)	R74n
+fools25.js	Re-adds the 2025 Element Modulator	R74n
+glow.js	[CHROME ONLY] Adds a cool lighting effect to many emissive pixels, like Fire	R74n
+gravity_test.js	Test for altered gravity, makes all pixels move inward	R74n
+rainbow_cursor.js	Makes your cursor multicolored	R74n
+smooth_water.js	Changes water mechanics so that it flows in one direction until it bounces off of something	R74n
+souls.js	Human Souls, Ectoplasm, and Tombstones	R74n
+spring.js	Many nature elements, like sakura trees, butterflies, beehives, and more	R74n
+survival.js	With limited resources, you must craft, sell, and buy to progress	R74n
+velocity.js	Beta for explosion velocity, and later wind, which may come to the base game in the future	R74n
+Tools & Settings
+betaworldgen.js	Advanced world generation	Adora
+betterModManager.js	Improvements to the Mod Manager	ggod
+betterSettings.js	Additional settings and functionality	ggod
+betterStats.js	Track actual running TPS of the simulation	mollthecoder
+buildingreplicator.js	Scans and replicates builds anywhere on the screen, along with some preset submitted builds	nousernamefound
+change.js	Tool that only replaces existing pixels	Alice
+color_tools.js	Tools that manipulate colors	Alice
+controllable_pixel.js	Pixel controlled using WASD (keyboard required)	Jayd
+cpt_alt.js	Destructive variant of the controllable pixel	Alice
+customtemptools.js	Customizable temperature tools	guzzo86
+debugRework.js	Revamps the Debug tool	Fioushemastor
+delete_all_of_element.js	Tool that deletes every pixel of the element(s) the user clicks on	Alice
+descriptions.js	Descriptions to the info page and tooltips of elements	mollthecoder
+editTools.js	Selections, Copying, Pasting, Cutting, Shapes, and more	ggod
+elementEraser.js	Tool that deletes only desired element	SquareScreamYT
+elementreplacer.js	Tool that replaces elements with other elements while keeping their color	Suss
+elementsManager.js	Create and edit custom elements	ggod
+evenmoretemptools.js	Temperature-modifying tools (±350/tick, NaN, and Infinity)	Alice
+extra_element_info.js	Descriptions to various vanilla elements. Used to provide the functionality that desc now does before it was added to vanilla	Melecie
+extrasaveslots.js	Extra saves slots [KEEP IMPORTANT SAVES AS FILES!!]	Jayd
+find.js	Find mode that highlights a chosen element as pulsating red and yellow [More Info]	Alice
+hideandshowtools.js	Tools to hide elements and show hidden elements	MicaelNotUsed
+human_friendly_design.js	Drag and Mix tools don't kill humans	Nekonico
+insane_random_events.js	Massively buffs random events	Alice
+jaydsfunctions.js	Extra tools	Jayd
+move_tools.js	Tools that move pixels	Alice
+no_scroll.js	Disables canvas scrolling, useful for Apple Magic Mouse users	Crimera Games
+noconfirm.js	Removes all confirmation popups	mollthecoder
+page_color.js	Change the page color with the "pageColor" query parameter	Alice
+pixelResizeTool.js	Button to change pixel scale	feeshmaster
+prompt.js	Primitive command console	Alice
+prop.js	Tool to edit the attributes of pixels	Alice
+replace_all.js	Way to replace every pixel of an element with another element [More Info]	Alice
+replace.js	Tool that replaces every pixel of a specified element with another specified element [" to open]	Alice
+save_loading.js	The ability to save and load scenes from files [See the info page of the element]	Alice
+selective_paint.js	Tool to paint only selected elements	SquareScreamYT
+stripe_paint.js	Tool to paint with stripes	Alice
+text.js	Tools to write text	RedBirdly
+texturepack.js	Tools that let you create and share custom texture packs	nousernamefound
+the_ground.js	Several rock types, worldgen settings, and gemstones	Alice
+Science & Chemistry
+alcohol.js	Methanol, (iso-)propanol, and butanol	Alice
+alkahest.js	The alkahest, a liquid which dissolves anything	Alice
+aScientistsWish.js	Several things related to science and physics	Carbon Monoxide, salmonfishy
+bettermetalscrap.js	Metal scrap can be melted back into its original material	nousernamefound
+bigger_star_spawners.js	Spawners for larger stars	Alice
+biology.js	Various elements and features that let you build your own organism	Nekonico
+bioooze_and_pyrogens.js	Bio-Ooze from Frackin' Universe and several heat-producing materials from various games' mods	Alice
+boiling_things.js	Various elements can be vaporized	Alice
+bouncing_balls.js	New types of balls that bounce accurately and roll	Nekonico
+chalcopyrite.js	The chalcopyrite ore	Sophie
+charsonsmoduno.js	Arsenic, Beryllium, Silicon, compounds, and some fake elements	CharsonBurensen
+chem.js	Several chemistry and physics-related elements	lllllllllwith10ls
+clf3.js	Chlorine Trifluoride	Alice
+debrisable.js	Expands the number of breakable elements, changes erosion, and adds way to craft certain elements from breaking other elements	Nekonico
+fire_extinguisher.js	Fire extinguisher blocks and realistic firefighting foam to put out nearly anything	Dr_Lego
+fire_mod.js	Various properties to change fire behavior and radioactive fire	Alice
+fire_slime.js	Pyrogenic version of slime	Alice
+Gemstones.js	Gemstones	Schweeny
+glenn_gases.js	Most gases from the Glenn's Gases mod into Sandboxels	Alice
+grav_mudstones.js	Various forms of mudstone with different gravities	Alice
+halogen.js	The missing halogens	nousernamefound
+hidden_ground.js	Hides most rock variants from the_ground.js excluding the base rocks and walls	Melecie
+iocalfaeus_clones.js	Iorefrius, Iolucius, and Ioradius gas	Alice
+jaydstuff.js	Various chemicals and compounds	Jayd
+laetium.js	Several fictional elements	Alice
+liquid_energy.js	Liquid versions of the elements in the Energy category	Alice
+liquid_mixing.js	Liquids can mix colors dynamically	Nekonico
+lye.js	Lye	BatteRaquette58
+mars.js	Martian materials	charcoal_afterlife
+metals.js	Several metals	Alice
+mixture.js	Many chemicals can be mixed	lllllllllwith10ls
+more_gold.js	Green Gold	pixelegend4
+morechemistry.js	New chemicals, compounds, and machines	Adora
+moreliquids.js	Various liquids	te-agma-at
+neutronium_compressor.js	Compressor from Minecraft's Avaritia mod that compresses 10,000 pixels of an element into a singularity	Alice
+noblegas.js	The missing noble gases	nousernamefound
+nousersthings.js	Many chemical elements, compounds, and more	nousernamefound
+radioactive.js	Radioactive elements on the periodic table [WIP]	kaeud
+random_rocks.js	Randomly generates rocks on game load	Alice
+roseyiede.js	Several variants of a substance called roseyiede	Alice
+some_tf_liquids.js	Various liquids from the Thermal Foundation Minecraft mod	Alice
+stickystuff.js	Slime, Honey, and others can stick to other elements	Suss
+the_ground.js	Several rocks, worldgen types, and gemstones	Alice
+Machines & Technology
+circuitcore.js	Extension for logicgates.js that adds advanced circuits [More Info]	RedBirdly
+clone_liquid.js	Liquid form of cloner	Alice
+colored_lightbulbs.js	Light bulb that can be painted	guzzo86, ggod
+combustion.js	Components necessary for combustion engines	uptzik
+conveyance.js	Conveyors, operated with and without electricity	Melecie
+drill.js	Drills made out of several materials	Suss
+ExtraMachines.js	Sensors, energy resources, materials, and more	Mecoolnotcool
+fine_tuned_cloner.js	Cloner that can spawn at different rates and prevent unwanted cloning	BatteRaquette58
+flipflop.js	Toggleable switches [More Info]	Flix
+fueled_generators.js	Fuel powered generators	guzzo86
+gameOfLife.js	Conway's Game of Life on a screen	ggod
+heatshield.js	Heatshields, makes Plasma cooler	Taterbob
+human_friendly_design.js	Pipes, Portals, Drag, and Mix don't kill humans	Nekonico
+logicgates.js	Predictable electricity and logic gates	nousernamefound
+note_block_advanced.js	Edit of Alice's note_block.js, adds different blocks with different frequencies	CharsonBurensen
+note_block.js	Musical Note Blocks	Alice
+nousersthings.js	Destroyable machines, pipe variants, filters, and more	nousernamefound
+portal.js	Portals that can teleport pixels	Alice
+pullers.js	Pixels that pull pixels towards them	voidapex11
+pushers.js	Pixels that push elements away from them	Alice
+sandboxels.js	Digital screen to play a mini version of Sandboxels	Nekonico
+spouts.js	Spouts for all liquids	kaeud
+state_voids.js	Several elements that delete specific states of matter	Alice
+switches.js	Electrical switches that can be toggled	Alice
+ticking_temp_stuff.js	Heater and Cooler variants	Alice
+video.js	Video player	ggod
+waterspout.js	Re-adds the old Water Spout	mollthecoder
+WhisperingTheory.js	Many more variants of heater and cooler	kaeud
+wifi_draw.js	Draws connections between WiFi in wifi.js and logicgates.js	RedBirdly
+Weapons
+aircrafts.js	Aircrafts and aircraft parts	Jayd
+c_fighter_jet.js	Controllable fighter jet [WASD to move, Q+WASD to shoot, GVBN for missiles]	Jayd
+guided_rocket.js	Homing misile	voidapex11
+icb.js	Various levels of nested cluster bombs	Alice
+life_eater.js	Warhammer 40,000's Life-Eater Virus and Virus Bombs	Alice
+liquid_void.js	Liquid variant of Void	Alice
+meat_rockets.js	Rockets that create meat when exploding	Melecie
+more_breaking.js	More elements can be broken	Alice
+rays.js	More Ray types	Alice
+rays++.js	Couple more rays	uptzik
+subspace.js	The Subspace Tripmine from Roblox	nousernamefound
+war_crimes.js	Tear gas and more	voidapex11
+weapons.js	Variety of different weapons	Jayd
+Food & Cooking
+aChefsDream_beta.js	Beta testing for aChefsDream.js	SquareScreamYT
+aChefsDream.js	More foods, animals, tools, and other cooking items [YouTube Playlist]	SquareScreamYT
+aChefsDream2.js	The sequel to aChefsDream.js, with brand new elements and tools	SquareScreamYT
+bananas.js	Bananas and banana plants	Alice
+CherrySoda.js	Materials to make cherry soda	guzzo86
+community_desserts.js	Various desserts from community suggestions	Tisquares
+GrapeSoda.js	Materials to make grape soda	guzzo86
+greenitemsandmore.js	Various green things, including apples and more food	zonneschijn7
+ketchup_mod.js	Many ketchup related elements, plus a few other condiments	Nubo318, Devi, Alice
+lemonade.js	Lemons and lemonade	personman, baconthemyth
+morefoodsmod.js	More foods	Clide4
+pizzasstuff.js	New animals, foods, and plants	_ilikepizza_
+potato_chips.js	Potato chips and sunflower oil	guzzo86
+sbstuff.js	Many foods	stefanblox
+soups.js	Seasoning and soup	pixelegend4
+weAllScreamFor.js	Ice cream toppings	rottenEgghead
+Life & Nature
+apioforms_pre.js	Incomplete implementation of elements from the Apioform Game	Alice
+baby.js	Various babies	Suss
+bacteria_mod.js	Content from Minecraft's Bacterium Mod	Alice
+bananas.js	Bananas and banana plants	Alice
+biology.js	Various elements and features that let you build your own organism	Nekonico
+cat.js	Cats and cat food	SquareScreamYT
+cells.js	Several experimental edits of the Cell element	Alice
+children.js	Pesky little gremlins	Taterbob
+colonies.js	Rockets that contain settlers to terraform a planet	Nekonico
+crimson.js	Elements relating to the Crimson from Terraria	Alice
+dogs.js	Simple dog and dog food	hedera-ivy
+fairy_chain.js	Way too many fairies to fey_and_more.js	Alice
+fantastic_creatures.js	Various animals	Melecie
+fantasy_elements.js	Fantasy creatures and substances	pixelegend4
+fey_and_more.js	Fairies, magic, and a lot of other things	Melecie
+fishin.js	Fishing rod and more fish with scientific names [More Info]	Nekonico
+flowers_and_forests.js	Trees and flowers	pixelegend4, SquareScreamYT
+fwibblen.js	Flying creature that turns nickel into itself, and another that does the same to the first one	Alice
+genetics.js	Organism that evolves and changes as it creates more of itself by eating	Nekonico
+human_edit.js	Improvements to humans	Alice
+Humanitize.js	Humans are cultured and able to craft, mine, build houses, trade, and more	Nekonico
+kopalstuff.js	Creatures, spirits, DNA, foods, and more	DaviStudios
+lizard_mod.js	Lizards	RedBirdly
+lost_souls.js	Souls and related elements	pixelegend4, SquareScreamYT, salmonfishy
+miscible_psoup_and_birthpool.js	Primordial Soup and Birthpool can mix (fey_and_more.js)	Alice
+mobs.js	Creepers, Zombies, and Skeletons	Alice
+moretrees.js	25 more tree and wood types	guzzo86
+nocancer.js	Removes cancer one tick after it is created	mollthecoder
+nocancer2.js	Removes cancer from the game altogether; May be incompatible with other mods that spawn cancer	mollthecoder
+nograssgrow.js	Prevents Grass from growing	mollthecoder
+ocean.js	Marine life	SquareScreamYT
+ores.js	Ore generation along with tools to mine them	nousernamefound
+pizzasstuff.js	New animals, foods, and plants	_ilikepizza_
+plants.js	Wide variety of new plants and fruits	Adora
+primordial_birthpool.js	Cross between Primordial Soup and Birthpool. Requires fey_and_more.js	Alice
+spring.js	Many nature elements, like sakura trees, butterflies, beehives, and more	R74n
+the_ground_og.js	Simplified and more stable version of the_ground.js	Alice
+the_ground.js	Several rock types, worldgen settings, and gemstones	Alice
+toothpaste.js	Teeth and paste	Alice
+volcanic_expansion.js	Obsidian, Pumice, and Andesite rocks	Jayd
+Fun & Games
+10kelements.js	Customizable amount of randomly generated elements	nousernamefound
+all_around_fillers.js	Directional Filler variants	idk73248
+allliquids.js	Made all elements liquids	Adora
+amogus.js	Small Among Us structure	Alice
+bfdi.js	Several references to Battle for Dream Island	Taterbob
+citybuilding.js	Seeds that create miniature buildings and other city-related items	SquareScreamYT
+collab_mod.js	Created by multiple people, adds random things	mrapple, ilikepizza, stefanblox
+doom.js	As seen on TikTok - Select the Doom element to start [WASD to move]	ggod
+elem3.js	All elements and combinations from Elemental 3 [Very Large]	Sophie
+fishin.js	Fishing rod and more fish with scientific names [More Info]	Nekonico
+fools+.js	Improves and makes fools.js extremely annoying	SquareScreamYT
+funny elements 2022-11-15.js	Few curated randomly-generated elements	Alice
+funny_solid.js	Feces	Alice
+funnynames.js	Various ways to mess with the names of elements	nousernamefound
+haseulite.js	Loona-related materials with various properties	Alice
+lactose_intolerance_and_celiac.js	Humans explode on contact with milk, wheat, bread, or toast	Nubo318
+lattice_filler.js	Combination of lattice and filler and a destructive variant	Suss
+liquid_mixing.js	Liquids can mix colors dynamically	Nekonico
+lone_urea.js	Urea	Alice
+maze.js	Solvable maze generator	ggod
+memelists.js	You must select elements through a list at the bottom of the page	mollthecoder
+minecraft.js	Several things from Minecraft	nousernamefound
+minesweeper.js	Implementation of Minesweeper	Alice
+musicalfruit.js	Humans get gas from eating Beans	mollthecoder
+nekonicos_stuff.js	Random stuff like graphite, oobleck, and red ice, as well as many machines	Nekonico
+prideflags.js	Some pride flags to the game	Adora
+random_elems.js	Curated randomly generated elements	Alice
+random_liquids.js	Randomly generates liquids on game load	Alice
+sbmixup.js	Silly elements from a Mix-Up! game	stefanblox
+sports_beta.js	Several sports items	BluBun5193
+star_wars.js	Various items from Star Wars by Disney	SeaPickle754
+sus.js	Among Us crewmate	Nv7
+triggerable_random_powders.js	Powders with different abilities, such as heating and cooling	Alice
+troll.js	Various dumb elements that iterate randomly on the entire screen	Alice
+WhisperingTheory.js	Powder and gas variant of heater and cooler	kaeud
+Visual Effects
+acid_and_shapes.js	Weird visual effects enabled in settings	Alice
+clouds.js	Moving clouds, sky.js recommended	RedBirdly
+customBackground.js	Set your background to an image link	Jayd
+fast_lightmap.js	Light sources glow, but faster	RedBirdly
+fractals.js	Element and tools to render fractals in game	nousernamefound
+heatglow.js	Red glowing effect for hot metals	nousernamefound
+hexagon_test.js	Pixels look like hexagons	RedBirdly
+invisible_dye.js	Elements like Dye and Spray Paint that take the color of the background	Alice
+invisible_wall.js	Element like Wall that takes the color of the background	Alice
+lightmap.js	Light sources glow	RedBirdly
+liquid_mixing.js	Liquids can mix colors dynamically	Nekonico
+moreViews.js	Many new rendering modes	ggod
+nicer_flame.js	Fire is visually pleasing	RedBirdly
+occlusion.js	Realistic shadows, similar to Terraria's lighting	RedBirdly
+onecolor.js	Placed pixels are single-colored	nousernamefound
+paint_event.js	Random event that randomly paints a circle	Alice
+rainbow_tests.js	Variants of the rainbow element with different maths	Alice
+real_light.js	Everything is dark unless hit with a photon (Light) pixel, hot, or glowing	Nekonico
+shader_by_jayd.js	Glow around light elements	Jayd
+Shroomboxels.js	Variant of acid_and_shapes.js that uses a different trigonometric function	Alice
+singleColor.js	Elements pick one color each time they're drawn	stefanblox
+sky.js	Day-night cycle	RedBirdly
+solidcolor.js	Placed pixels have a solid color	SquareScreamYT
+texture_pack_by_jayd.js	Cool background	Jayd
+UwUify.js	"UwU" background	Jayd
+Compilations
+food_mods.js	Combination of most food mods	stefanblox, moss, Tisquares, SquareScreamYT, Adora, pixelegend4, Alice, Nubo318, Clide4, rottenEgghead
+Technical Libraries & Tests
+1.10example.js	Examples for modern rendering modding and more	R74n
+a_bundle_of_tests.js	Several test functions	Alice
+all_stain.js	Every element stains solids	stefanblox
+betterMenuScreens.js	Library for mods to create their own menus	ggod
+changePixelDebug.js	The changePixel() function aborts and logs to console when it tries to change to a non-existent element	Alice
+changeTempReactionParameter.js	The changeTemp property to modded reactions	Alice
+code_library.js	Functions and variables common to some other mods	Alice
+controllable_pixel_test.js	Pixel that can be controlled with the keyboard keys [More Info] [PC ONLY]	Alice
+customexplosion.js	Added a custom explosion element and interface for it. check out its source code for how modders can use it	Alex
+date_test.js	K-pop idol birthday testing stuff	Alice
+drawPixels_change_test.js	Test of altering drawPixels(). Gives burning pixels a red overlay similar to the yellow overlay for charged pixels	Alice
+example_mod.js	Example mod for new modders	R74n
+explodeAtPlus.js	Extension of the explodeAt function with more options	Alice
+fill_script.js	Script that fills an area	TealEgg#7646
+generative_mods.js	Modpack with optional mass element generation	Alice
+generator_prompt.js	Prompt to use generative_mods.js's element generators after the game finishes loading	Alice
+gradient_background_support.js	Enables linear gradients for backgrounds as arrays in settings.bg	Alice
+libpacman-v1.js	Library for making mods	mollthecoder
+libpixeltracking.js	Library for tracking pixels	mollthecoder
+maxColorOffset.js	Property to specify how much a pixel's color can be randomly offset from the element color	Alice
+modlangs.js	Customisable property in an element to allow for translations in mods. See the file for instructions on how to implement	SquareScreamYT
+nested_for_reaction_example.js	Example of using a nested for loop to add reactions. It makes various things kill plants	Alice
+nv7.js	Giant Nv7 image [Large]	Nv7
+place_all_elements.js	Experimental function that places every pixel	Alice
+randomness_but_tick.js	Random experimental elements using the tick function feature	Alice
+randomness_but_tool.js	Random experimental elements using the tool function feature	Alice
+randomness.js	Random experimental elements	Alice
+scenexe.js	Move through and damage a simulated field of polygons [WIP]	nousernamefound
+structure_test_2.js	Another test for implementing structures into Sandboxels (requires the previous test)	Alice
+structure_test.js	Test for implementing structures into Sandboxels	Alice
+test.js	Test that adds mayo :)	R74n
+tool_pixel_behavior.js	Gives unique behaviors to tools if placed with cheats	Alice
+worldgen_test.js	Element that generates a save with a grass layer, dirt layer, rock layer, and a pond	Alice

@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
+    "target": "es5",
+    "allowJs": true,
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "jsx": "react",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "baseUrl": "src"
+  },
+  "typeRoots": ["./src/types.d.ts", "./node_modules/types/"],
+  "include": ["src"],
+  "exclude": ["node_modules", "build", "public", "webpack.config.js"]
+}

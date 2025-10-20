@@ -1,0 +1,57 @@
+@import "level";
+@import "utilities";
+
+$cameraW: 1300px;
+$cameraH: 700px;
+
+#root {
+  width: $cameraW;
+  min-width: $cameraW;
+  height: $cameraH;
+  min-height: $cameraH;
+  position: relative;
+  display: block;
+
+  transform: scale(0.85);
+}
+
+#camera {
+  cursor: none;
+
+  width: 100%;
+  height: 100%;
+
+  position: relative;
+  overflow: hidden;
+
+  perspective: 800px;
+
+  display: none;
+  background-color: black;
+  background-repeat: repeat;
+}
+
+#ui,
+.ui-wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+body {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+
+  overflow: hidden;
+  background: url(./background.jpg);
+  background-size: cover;
+
+  user-select: none;
+}

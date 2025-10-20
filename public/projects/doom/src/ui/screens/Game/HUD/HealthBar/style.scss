@@ -1,0 +1,17 @@
+.health-bar {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+
+  bottom: 40px;
+  left: 110px;
+
+  transform: scale(1.8);
+
+  width: 250px;
+
+  .health-value {
+    transform: scale(0.6) translate(-37%, 0);
+  }
+}

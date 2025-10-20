@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>The Oregon Trail</title>
+		<link rel="icon" href="./img/icon2.png">
+        <link rel="stylesheet" type="text/css" href="main.css" />
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Rye" rel="stylesheet">
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129353070-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-129353070-1');
+        </script>
+  </head>
+    <body onload = "Game.start()">
+        <main>
+		    <br>
+			<br>
+            <div class="ratio-wrapper ratio3-2">
+                <div class="ratio-content " id="game">
+                </div>
+            </div>
+        </main>
+        <script src="js/Store.js"></script>
+        <script src="js/RandomEvents.js"></script>
+		<script src="js/Person.js"></script>
+		<script src="js/Caravan.js"></script>
+		<script src="js/Landmarks.js"></script>
+		<script src="js/LandmarkTalks.js"></script>
+		<script src="js/LandmarkStores.js"></script>
+		<script src="js/Map.js"></script>
+
+        <script src="js/Game.js"></script>
+        <script src="js/RiverCrossingGame.js"></script>
+
+    </body>
+</html>

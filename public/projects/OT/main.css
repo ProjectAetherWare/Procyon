@@ -1,0 +1,303 @@
+@media (max-width: 845px) {
+    #game { font-size: 0.8em; }
+}
+@media (max-width: 720px) {
+    #game { font-size: 0.6em; }
+}
+@media (max-width: 540px) {
+    #game { font-size: 0.3em; }
+}
+
+.ratio-wrapper { position: relative; }
+.ratio-content {
+    position: absolute;
+    top: 0px; bottom: 0px; right: 0px; left: 0px;
+    width: 100%; height: 100%;
+    box-sizing: border-box;
+}
+.ratio-wrapper:before {
+    content: '';
+    display: block;
+}
+
+.ratio3-2:before { padding-top: 66%; }
+.ratio5-4:before { padding-top: 80%; }
+
+main > div {
+    max-width: 700px;
+    width: 80%;
+	margin: auto;
+	border: 1px solid white;
+}
+
+body {
+	background-image: url("./img/Old_Map.png");
+}
+
+#game { padding: 2em; background-color: black; }
+
+#game > div {
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+    position: relative;
+    overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+
+#game h1 {
+    color: rgb(255,200,170);
+    font-family: "Rye", Serif;
+    font-weight: lighter;
+    text-align: center;
+}
+
+.white_black { color: white; background-color: black; }
+
+.black_white { color: black; background-color: white; }
+
+#game ul {
+    margin-left: 0px;
+    padding-left: 1.5em;
+}
+
+#game ol {
+    list-style-type: decimal;
+    margin-left: 0px;
+    padding-left: 4em;
+}
+
+#tombstone {
+    background-image: url("./img/tombstone.png");
+    background-size: contain;
+}
+
+#game > div p {
+	margin: 0.2em;
+}
+
+ul.plain_list { list-style-type: none; }
+ul.square_list { list-style-type: square; }
+
+ol.col2 span, ul.col2 span {
+    float: right;
+    margin-left: 2em;
+}
+
+#game div.centered_content {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+}
+
+#game * { font-family: 'Press Start 2P', monospace; }
+
+#game .prompt {
+    position: absolute;
+    text-align: center;
+    padding: 0.5em 0 1em 0;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    margin: 0;
+}
+
+#Game table {
+	font-size: inherit;
+	color: inherit;
+    margin-top: 1em;
+	font-weight: inherit;
+	border-spacing: 2.5em 0.5em;
+}
+
+#game table th {
+	font-weight: inherit;
+}
+
+#topTen table {
+	text-align: center;
+}
+
+#matt_intro { flex-direction: row !important;}
+
+#matt_img {
+    background-image: url("./img/matt.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    flex: 1;
+    height: 75%;
+    align-self: center;
+}
+
+#matt_img + div { flex: 3; }
+
+#mattstore {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#mattstore > div:nth-of-type(2) {
+    display: flex;
+    align-items: flex-start;
+    width:100%;
+}
+
+#mattstore ol span, #check_supplies ul span {
+    float: right; margin-left: 2em;
+}
+
+#conditions {
+	width: 95%;
+	color: black;
+	background-color: white;
+	margin: 2%;
+	padding: 2%;
+}
+
+#AlertBox, .AlertBox {
+	position: relative;
+	word-wrap: break-word;
+	z-index : 1;
+	width: 60%;
+	top: -70%;
+	padding: 0.2em;
+	margin: auto;
+	border: 0.6em solid white;
+	border-radius : 10px;
+	background-color : black;
+}
+
+#DialogBox {
+	position: relative;
+    word-wrap: break-word;
+    z-index: 1;
+    height: 95%;
+    width: 95%;
+    /*top: -100%;*/
+    padding: 0.2em;
+    margin: auto;
+    border: 0.6em solid white;
+    border-radius: 10px;
+    background-color: black;
+}
+
+#journey #animation {
+    background-color: black;
+    height: 30%;
+    position: relative;
+}
+
+#bg {
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url('./img/bg_grass');
+}
+
+#journey div { width: 100%; }
+
+#journey #ground {
+    background-color: #04B600;
+    height: 20%;
+}
+
+#journey #status {
+    text-align: center;
+    height: 50%;
+}
+
+
+
+#oxen {
+    position: absolute;
+    right: 7%;
+    bottom: 0px;
+    height: 55%;
+}
+
+img.text_decoration {
+	width: 80%;
+	padding: 0.5em 0;
+	margin: 0 auto;
+	display: block;
+}
+
+img.text_decoration:nth-of-type(2) {
+	margin-top: auto;
+}
+
+img.text_decoration ~ * {
+	width: 75%;
+}
+
+img.fish {
+	width: 30%;
+	height: 15%;
+	margin: 0 auto;
+	padding: 0.5em 0;
+	display: block;
+}
+
+#store_image {
+
+	width: 30%;
+    padding: 5%;
+}
+
+#red_line {
+
+	width: 100%;
+	height: 5px;
+	background-color: red;
+	border: 0px;
+	border-radius: 1px;
+}
+
+#blue_line {
+
+	width: 90%;
+	height: 5px;
+	background-color: cyan;
+	border: 0px;
+	border-radius: 1px;
+}
+
+#family {
+	width: 100%;
+	height: 50%;
+}
+
+#landmark {
+    position: absolute;
+    bottom: 0;
+    height: 35%;
+    transition: right 1s linear 0s;
+}
+
+#river_crossing > div { width: 50%; }
+
+#map { background-image: url("img/map.png"); }
+
+/*** River Crossing Game ****/
+#water,#canvas {
+   width: 100%;
+   height: 270px;
+   position: relative;
+   display: block;
+}
+#canvas {
+   background:url("./img/water.gif");
+}
+
+#msg {
+	width: 40%;
+	position: absolute;
+	text-align: center;
+	top: 30%;
+	word-wrap: break-word;
+}

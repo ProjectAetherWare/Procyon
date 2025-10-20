@@ -1,0 +1,15 @@
+.sprites {
+  transform-style: preserve-3d;
+
+  .sprite-cont {
+    transform-style: preserve-3d;
+
+    .sprite {
+      position: absolute;
+
+      backface-visibility: hidden;
+
+      background-repeat: no-repeat !important;
+    }
+  }
+}
