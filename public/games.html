@@ -3,32 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Procyon</title>
+<title>Procyon Games</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap');
 
-:root {
-  --bg: #0a0a0a;
-  --fg: #fff;
-  --star-yellow: #FFD700;
-}
-
 body {
   margin: 0;
-  font-family: "Fira Code", monospace;
-  background: var(--bg);
-  color: var(--fg);
+  padding: 0;
+  font-family: 'Fira Code', monospace;
+  background: #0a0a0a;
+  color: white;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
+/* Animated grid background */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: linear-gradient(to right, rgba(255,255,255,0.07) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(255,255,255,0.07) 1px, transparent 1px);
+  background:
+    linear-gradient(to right, rgba(255,255,255,0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.07) 1px, transparent 1px);
   background-size: 80px 80px;
   animation: gridmove 30s linear infinite;
   z-index: -1;
@@ -38,272 +36,191 @@ body::before {
   100% { background-position: 80px 80px, 80px 80px; }
 }
 
-#logo {
-  margin: 20px auto;
-  display: block;
-  width: 200px;
-}
-
-.top-bar {
-  display: flex;
-  justify-content: space-between;
-  width: 90%;
-  max-width: 900px;
-  margin: 10px auto;
-  align-items: center;
-}
-
-#searchBar {
-  flex: 1;
-  padding: 6px 12px;
-  border-radius: 8px;
-  border: none;
-  outline: none;
-  font-family: "Fira Code", monospace;
-}
-
-#favoritesBtn {
-  margin-left: 10px;
-  padding: 6px 12px;
-  border-radius: 8px;
-  background: rgba(255,255,255,0.1);
-  cursor: pointer;
-}
-
-.category-tabs {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin: 15px 0;
-  flex-wrap: wrap;
-}
-
-.category-tab {
-  padding: 6px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  background: rgba(255,255,255,0.1);
-  transition: background 0.2s;
-}
-
-.category-tab.active, .category-tab:hover {
-  background: rgba(255,255,255,0.25);
-}
-
-.games-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
-  padding: 20px;
-}
-
-.game-button {
+header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 120px;
-  height: 120px;
+  padding: 20px;
+  text-align: center;
+}
+header img {
+  width: 200px;
+  filter: invert(1);
+  margin-bottom: 20px;
+}
+
+#searchBar {
+  padding: 10px;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+#gamesContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  flex: 1;
+}
+
+.game-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background: rgba(255,255,255,0.05);
   border-radius: 12px;
+  padding: 12px;
+  transition: background 0.2s;
   cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
-  text-align: center;
-  padding: 8px;
   position: relative;
 }
+.game-card:hover { background: rgba(255,255,255,0.15); }
 
-.game-button:hover {
-  background: rgba(255,255,255,0.15);
-  transform: translateY(-2px);
-}
-
-.game-button img {
-  width: 48px;
-  height: 48px;
-  margin-bottom: 8px;
+.game-card img {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 10px;
   filter: invert(1);
 }
 
-.game-button span {
+.game-card span {
   font-size: 14px;
-  word-break: break-word;
+  text-align: center;
 }
 
-/* Star button */
 .star-btn {
   position: absolute;
   top: 6px;
   right: 6px;
   font-size: 18px;
+  color: gold;
   cursor: pointer;
-  color: rgba(255,255,255,0.5);
-  transition: color 0.2s;
-}
-
-.star-btn.favorited {
-  color: var(--star-yellow);
+  user-select: none;
 }
 
 .pagination {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin: 20px 0;
+  margin: 20px;
 }
-
 .page-btn {
-  background: rgba(255,255,255,0.1);
   padding: 6px 12px;
+  background: rgba(255,255,255,0.1);
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.2s;
 }
+.page-btn:hover { background: rgba(255,255,255,0.2); }
+.page-btn.active { border: 2px solid white; }
 
-.page-btn.active, .page-btn:hover {
-  background: rgba(255,255,255,0.25);
-}
 </style>
 </head>
 <body>
 
-<img id="logo" src="logo.png" alt="Procyon Logo">
+<header>
+  <img src="/public/logo.png" alt="Procyon Logo">
+  <input type="text" id="searchBar" placeholder="Search games...">
+</header>
 
-<div class="top-bar">
-  <input type="text" id="searchBar" placeholder="Search games..." oninput="filterGames()">
-  <button id="favoritesBtn" onclick="showFavorites()">Favorites</button>
-</div>
+<div id="gamesContainer"></div>
 
-<div class="category-tabs" id="categoryTabs">
-  <!-- Category buttons dynamically added -->
-</div>
-
-<div class="games-container" id="gamesContainer">
-  <!-- Game buttons dynamically added -->
-</div>
-
-<div class="pagination" id="paginationContainer">
-  <!-- Page buttons dynamically added -->
-</div>
+<div class="pagination" id="pagination"></div>
 
 <script>
-// === Games and categories ===
-const allGames = [
-  {name:"1", category:"Other"}, {name:"1v1space", category:"Gun"}, {name:"2048", category:"Other"},
-  {name:"8ball", category:"Other"}, {name:"9007199254740992", category:"Other"}, {name:"BTD4", category:"Other"},
-  {name:"Bitlife", category:"Other"}, {name:"Bloxorz", category:"Other"}, {name:"Chess", category:"Other"},
-  {name:"DogeMiner", category:"Other"}, {name:"Henrystickman", category:"Other"}, {name:"HexGL", category:"Car"},
-  {name:"L2F2", category:"Car"}, {name:"L2F3", category:"Car"}, {name:"Minecraft", category:"Sandbox"},
-  {name:"OT", category:"Other"}, {name:"PE", category:"Other"}, {name:"SandboxelsOLD", category:"Sandbox"},
-  // Add all other games similarly...
+const games = [
+  "1","1v1space","2048","8ball","9007199254740992","BTD4","Bitlife","Bloxorz",
+  "Chess","DogeMiner","Henrystickman","HexGL","L2F2","L2F3","Minecraft","OT",
+  "PE","SandboxelsOLD","Subway","TIOachievementunlocked","adrenalinechallenge",
+  "among-us","avalanche","backrooms","basketball-stars","battleforgondor",
+  "bigredbutton","blackknight","bloonstd","bloonstd2","bloxors","boxhead2play",
+  "breakingthebank","btts","cannon-basketball-4","canyondefense","cattle3d",
+  "cell-machine","championarcher","chrome-dino","circlo","connect3","cookie-clicker",
+  "craftmine","creativekillchamber","csgo-clicker","ctr","ctr-holiday","ctr-tr",
+  "cubefield","cupcake2048","deal-or-no-deal","death-run-3d","defend-the-tank",
+  "doge2048","doodle-jump","doom","doublewires","draw-the-hill","ducklife1",
+  "ducklife2","ducklife3","edgenotfound","elasticman","endlesswar3","evil-glitch",
+  "exo","factoryballs","fake-virus","flappy-2048","flappy-bird","flashtetris",
+  "game-inside","geodash","getaway-shootout","gimme-the-airpod","glass-city",
+  "google-snake","grindcraft","hackertype","hba","helicopter","hexempire",
+  "hextris","idle-breakout","idle-shark","impossiblequiz","interactivebuddy",
+  "just-one-boss","kittencannon","krunker","learntofly","mario","matrixrampage",
+  "meme2048","minecraft-classic","minesweeper","miniputt","missiles","motox3m",
+  "motox3m-pool","motox3m-spooky","motox3m-winter","n-gon","ns-shaft","om-bounce",
+  "pandemic2","papaspizzaria","paperio2","papery-planes","particle-clicker",
+  "polybranch","portalflash","push-the-square","push-your-luck","retro-bowl",
+  "rh","rolly-vortex","rooftop-snipers","sand-game","sandboxelsslope","sm64",
+  "sm64-main","smashkarts","smokingbarrels","snowbattle","soldier-legend","solitaire",
+  "sort-the-court","soundboard","stack","stack-bump-3d","stealingthediamond",
+  "stickwar","stormthehouse2","superhot","swerve","tacticalassasin2",
+  "tank-trouble-2","tanuki-sunset","temple-run-2","the-final-earth","thebattle",
+  "theheist","there-is-no-game","thisistheonlylevel","tossstheturtle","tube-jumpers",
+  "tunnel-rush","tv-static","vex3","vex4","vex5","vex6","webretro","webretro-local",
+  "wolf3d","wordle","worlds-hardest-game","you-are-bezos12.2"
 ];
 
-const categories = ["Car","War","Gun","Sandbox","Other"];
-let currentCategory = "Car";
+// Optional: assign categories for pagination (5 pages)
+const categories = ["Car","War","Gun","Sandbox","Misc"];
+const perPage = Math.ceil(games.length / categories.length);
 let currentPage = 0;
-const pageSize = 12;
-let favorites = JSON.parse(localStorage.getItem("favorites")||"[]");
 
-const categoryTabsContainer = document.getElementById("categoryTabs");
-categories.forEach(cat=>{
-  const btn = document.createElement("div");
-  btn.className = "category-tab" + (cat===currentCategory?" active":"");
-  btn.innerText = cat;
-  btn.onclick = () => { currentCategory=cat; currentPage=0; updateTabs(); renderGames(); };
-  categoryTabsContainer.appendChild(btn);
+const container = document.getElementById("gamesContainer");
+const paginationEl = document.getElementById("pagination");
+const searchBar = document.getElementById("searchBar");
+
+function renderGames(page = 0, filter = "") {
+  container.innerHTML = "";
+  const start = page * perPage;
+  const end = start + perPage;
+  const visibleGames = games.filter(g => g.toLowerCase().includes(filter.toLowerCase())).slice(start, end);
+  visibleGames.forEach(name => {
+    const card = document.createElement("div");
+    card.className = "game-card";
+    card.innerHTML = `
+      <img src="/public/projects/${name}/logo.png" alt="${name} Logo">
+      <span>${name}</span>
+      <div class="star-btn" onclick="toggleFavorite(event,'${name}')">☆</div>
+    `;
+    card.onclick = () => window.open(`/public/projects/${name}/index.html`,"_blank");
+    container.appendChild(card);
+  });
+}
+
+function renderPagination(filter = "") {
+  paginationEl.innerHTML = "";
+  const totalPages = Math.ceil(games.filter(g => g.toLowerCase().includes(filter.toLowerCase())).length / perPage);
+  for(let i=0;i<totalPages;i++){
+    const btn = document.createElement("div");
+    btn.className = "page-btn" + (i===currentPage?" active":"");
+    btn.innerText = categories[i] || `Page ${i+1}`;
+    btn.onclick = () => { currentPage = i; renderGames(currentPage, searchBar.value); renderPagination(searchBar.value); };
+    paginationEl.appendChild(btn);
+  }
+}
+
+searchBar.addEventListener("input", () => {
+  currentPage = 0;
+  renderGames(currentPage, searchBar.value);
+  renderPagination(searchBar.value);
 });
 
-function updateTabs(){
-  Array.from(categoryTabsContainer.children).forEach(btn=>{
-    btn.classList.toggle("active", btn.innerText===currentCategory);
-  });
-}
-
-function renderGames() {
-  const container = document.getElementById("gamesContainer");
-  container.innerHTML = "";
-
-  let filtered = allGames.filter(g => g.category === currentCategory);
-  const start = currentPage * pageSize;
-  const paged = filtered.slice(start, start + pageSize);
-
-  paged.forEach(game => {
-    const btn = document.createElement("div");
-    btn.className = "game-button";
-    btn.innerHTML = `
-      <div class="star-btn ${favorites.includes(game.name)?'favorited':''}" onclick="toggleFavorite(event,'${game.name}')">★</div>
-      <img src="projects/${game.name}/logo.png" alt="${game.name} Logo">
-      <span>${game.name}</span>`;
-    btn.onclick = () => window.location.href = `projects/${game.name}/index.html`;
-    container.appendChild(btn);
-  });
-
-  renderPagination(filtered.length);
-}
-
-function toggleFavorite(e, name) {
+// Favorite functionality
+let favorites = JSON.parse(localStorage.getItem("favorites")||"[]");
+function toggleFavorite(e,name){
   e.stopPropagation();
-  if(favorites.includes(name)){
-    favorites = favorites.filter(f => f!==name);
-  } else {
-    favorites.push(name);
-  }
-  localStorage.setItem("favorites", JSON.stringify(favorites));
-  renderGames();
-}
-
-function renderPagination(totalGames) {
-  const container = document.getElementById("paginationContainer");
-  container.innerHTML = "";
-  const pages = Math.ceil(totalGames / pageSize);
-  for(let i=0;i<pages;i++){
-    const btn = document.createElement("div");
-    btn.className = "page-btn" + (i===currentPage ? " active" : "");
-    btn.innerText = i+1;
-    btn.onclick = () => { currentPage=i; renderGames(); };
-    container.appendChild(btn);
-  }
-}
-
-function filterGames() {
-  const search = document.getElementById("searchBar").value.toLowerCase();
-  const container = document.getElementById("gamesContainer");
-  container.innerHTML = "";
-
-  let filtered = allGames.filter(g => g.category === currentCategory && g.name.toLowerCase().includes(search));
-  filtered.forEach(game => {
-    const btn = document.createElement("div");
-    btn.className = "game-button";
-    btn.innerHTML = `
-      <div class="star-btn ${favorites.includes(game.name)?'favorited':''}" onclick="toggleFavorite(event,'${game.name}')">★</div>
-      <img src="projects/${game.name}/logo.png" alt="${game.name} Logo">
-      <span>${game.name}</span>`;
-    btn.onclick = () => window.location.href = `projects/${game.name}/index.html`;
-    container.appendChild(btn);
-  });
-
-  renderPagination(filtered.length);
-}
-
-function showFavorites() {
-  const container = document.getElementById("gamesContainer");
-  container.innerHTML = "";
-  const favGames = allGames.filter(g => favorites.includes(g.name));
-  favGames.forEach(game => {
-    const btn = document.createElement("div");
-    btn.className = "game-button";
-    btn.innerHTML = `
-      <div class="star-btn favorited" onclick="toggleFavorite(event,'${game.name}')">★</div>
-      <img src="projects/${game.name}/logo.png" alt="${game.name} Logo">
-      <span>${game.name}</span>`;
-    btn.onclick = () => window.location.href = `projects/${game.name}/index.html`;
-    container.appendChild(btn);
-  });
-  document.getElementById("paginationContainer").innerHTML="";
+  if(favorites.includes(name)) favorites = favorites.filter(f=>f!==name);
+  else favorites.push(name);
+  localStorage.setItem("favorites",JSON.stringify(favorites));
+  e.target.innerText = favorites.includes(name)?"★":"☆";
 }
 
 renderGames();
+renderPagination();
 </script>
+
 </body>
 </html>
