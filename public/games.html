@@ -4,22 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Procyon Games</title>
+<link rel="icon" href="/public/smalllogo.png" type="image/png">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap');
 
 body {
-  margin: 0;
-  padding: 0;
+  margin: 0; padding: 0;
   font-family: 'Fira Code', monospace;
   background: #0a0a0a;
   color: white;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  overflow-x: hidden;
 }
 
-/* Animated grid background */
+/* Grid Background */
 body::before {
   content: "";
   position: fixed;
@@ -36,104 +35,111 @@ body::before {
   100% { background-position: 80px 80px, 80px 80px; }
 }
 
-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
+/* Logo */
+#logo {
   text-align: center;
+  padding: 20px 0;
 }
-header img {
+#logo img {
   width: 200px;
   filter: invert(1);
-  margin-bottom: 20px;
 }
 
-#searchBar {
-  padding: 10px;
-  width: 90%;
-  max-width: 600px;
+/* Tabs */
+#tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.tab-btn {
+  padding: 8px 16px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.1);
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+.tab-btn:hover {
+  background: rgba(255,255,255,0.2);
+  transform: scale(1.05);
+}
+.tab-btn.active {
+  border: 2px solid white;
+}
+
+/* Search */
+#searchContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+#gameSearch {
+  width: 300px;
+  padding: 8px 12px;
   border-radius: 12px;
   border: none;
   outline: none;
   font-size: 16px;
 }
 
-#gamesContainer {
+/* Games Grid */
+#gamesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 20px;
-  padding: 20px;
-  flex: 1;
+  padding: 0 20px 40px;
 }
 
+/* Individual Game Card */
 .game-card {
+  background: rgba(0,0,0,0.3);
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+  transition: background 0.2s;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(255,255,255,0.05);
-  border-radius: 12px;
-  padding: 12px;
-  transition: background 0.2s;
-  cursor: pointer;
-  position: relative;
+  gap: 6px;
 }
-.game-card:hover { background: rgba(255,255,255,0.15); }
-
+.game-card:hover {
+  background: rgba(255,255,255,0.15);
+}
 .game-card img {
-  width: 64px;
-  height: 64px;
-  margin-bottom: 10px;
-  filter: invert(1);
+  width: 48px;
+  height: 48px;
 }
-
-.game-card span {
-  font-size: 14px;
-  text-align: center;
-}
-
-.star-btn {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  font-size: 18px;
+.game-card button {
+  background: none;
+  border: none;
   color: gold;
+  font-size: 20px;
   cursor: pointer;
-  user-select: none;
 }
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin: 20px;
-}
-.page-btn {
-  padding: 6px 12px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.page-btn:hover { background: rgba(255,255,255,0.2); }
-.page-btn.active { border: 2px solid white; }
-
 </style>
 </head>
 <body>
 
-<header>
+<div id="logo">
   <img src="/public/logo.png" alt="Procyon Logo">
-  <input type="text" id="searchBar" placeholder="Search games...">
-</header>
+</div>
 
-<div id="gamesContainer"></div>
+<div id="tabs"></div>
 
-<div class="pagination" id="pagination"></div>
+<div id="searchContainer">
+  <input type="text" id="gameSearch" placeholder="Search games..." oninput="filterGames()">
+</div>
+
+<div id="gamesGrid"></div>
 
 <script>
-const games = [
-  "1","1v1space","2048","8ball","9007199254740992","BTD4","Bitlife","Bloxorz",
+// --- Categories & Pages ---
+const categories = ["All", "Car", "War", "Gun", "Sandbox"];
+// Games sorted by category (example, you can adjust as needed)
+const gamesByCategory = {
+  "All": [
+    "1","1v1space","2048","8ball","9007199254740992","BTD4","Bitlife","Bloxorz",
   "Chess","DogeMiner","Henrystickman","HexGL","L2F2","L2F3","Minecraft","OT",
   "PE","SandboxelsOLD","Subway","TIOachievementunlocked","adrenalinechallenge",
   "among-us","avalanche","backrooms","basketball-stars","battleforgondor",
@@ -160,66 +166,94 @@ const games = [
   "tank-trouble-2","tanuki-sunset","temple-run-2","the-final-earth","thebattle",
   "theheist","there-is-no-game","thisistheonlylevel","tossstheturtle","tube-jumpers",
   "tunnel-rush","tv-static","vex3","vex4","vex5","vex6","webretro","webretro-local",
-  "wolf3d","wordle","worlds-hardest-game","you-are-bezos12.2"
-];
+  "wolf3d","wordle","worlds-hardest-game","you-are-bezos", "12.2"
+  ],
+  "Car": ["1v1space","Subway","motox3m","motox3m-pool","motox3m-spooky","motox3m-winter"],
+  "War": ["battleforgondor","blackknight","soldier-legend","tank-trouble-2","tacticalassasin2"],
+  "Gun": ["ctr","ctr-holiday","ctr-tr","csgo-clicker","kittencannon","krunker"],
+  "Sandbox": ["Minecraft","craftmine","creativekillchamber","sandboxelsslope","exo","polybranch"]
+};
 
-// Optional: assign categories for pagination (5 pages)
-const categories = ["Car","War","Gun","Sandbox","Misc"];
-const perPage = Math.ceil(games.length / categories.length);
-let currentPage = 0;
+let currentCategory = "All";
+let favorites = new Set();
 
-const container = document.getElementById("gamesContainer");
-const paginationEl = document.getElementById("pagination");
-const searchBar = document.getElementById("searchBar");
-
-function renderGames(page = 0, filter = "") {
-  container.innerHTML = "";
-  const start = page * perPage;
-  const end = start + perPage;
-  const visibleGames = games.filter(g => g.toLowerCase().includes(filter.toLowerCase())).slice(start, end);
-  visibleGames.forEach(name => {
-    const card = document.createElement("div");
-    card.className = "game-card";
-    card.innerHTML = `
-      <img src="/public/projects/${name}/logo.png" alt="${name} Logo">
-      <span>${name}</span>
-      <div class="star-btn" onclick="toggleFavorite(event,'${name}')">☆</div>
-    `;
-    card.onclick = () => window.open(`/public/projects/${name}/index.html`,"_blank");
-    container.appendChild(card);
+function renderTabs() {
+  const tabsDiv = document.getElementById("tabs");
+  tabsDiv.innerHTML = "";
+  categories.forEach(cat => {
+    const btn = document.createElement("button");
+    btn.className = "tab-btn" + (cat===currentCategory?" active":"");
+    btn.textContent = cat;
+    btn.onclick = () => {
+      currentCategory = cat;
+      renderTabs();
+      renderGames();
+    };
+    tabsDiv.appendChild(btn);
   });
 }
 
-function renderPagination(filter = "") {
-  paginationEl.innerHTML = "";
-  const totalPages = Math.ceil(games.filter(g => g.toLowerCase().includes(filter.toLowerCase())).length / perPage);
-  for(let i=0;i<totalPages;i++){
-    const btn = document.createElement("div");
-    btn.className = "page-btn" + (i===currentPage?" active":"");
-    btn.innerText = categories[i] || `Page ${i+1}`;
-    btn.onclick = () => { currentPage = i; renderGames(currentPage, searchBar.value); renderPagination(searchBar.value); };
-    paginationEl.appendChild(btn);
-  }
+function renderGames() {
+  const grid = document.getElementById("gamesGrid");
+  grid.innerHTML = "";
+  const games = gamesByCategory[currentCategory] || [];
+  games.forEach(game => {
+    const card = document.createElement("div");
+    card.className = "game-card";
+    const icon = document.createElement("img");
+    icon.src = `/projects/${game}/logo.png`;
+    icon.alt = game;
+    const name = document.createElement("span");
+    name.textContent = game;
+    const star = document.createElement("button");
+    star.innerHTML = favorites.has(game) ? "★" : "☆";
+    star.onclick = () => {
+      if (favorites.has(game)) favorites.delete(game);
+      else favorites.add(game);
+      renderGames();
+    };
+    card.appendChild(icon);
+    card.appendChild(name);
+    card.appendChild(star);
+    card.onclick = () => {
+      window.open(`/projects/${game}/index.html`, "_blank");
+    };
+    grid.appendChild(card);
+  });
 }
 
-searchBar.addEventListener("input", () => {
-  currentPage = 0;
-  renderGames(currentPage, searchBar.value);
-  renderPagination(searchBar.value);
-});
-
-// Favorite functionality
-let favorites = JSON.parse(localStorage.getItem("favorites")||"[]");
-function toggleFavorite(e,name){
-  e.stopPropagation();
-  if(favorites.includes(name)) favorites = favorites.filter(f=>f!==name);
-  else favorites.push(name);
-  localStorage.setItem("favorites",JSON.stringify(favorites));
-  e.target.innerText = favorites.includes(name)?"★":"☆";
+function filterGames() {
+  const query = document.getElementById("gameSearch").value.toLowerCase();
+  const grid = document.getElementById("gamesGrid");
+  grid.innerHTML = "";
+  const games = (gamesByCategory[currentCategory] || []).filter(g => g.toLowerCase().includes(query));
+  games.forEach(game => {
+    const card = document.createElement("div");
+    card.className = "game-card";
+    const icon = document.createElement("img");
+    icon.src = `/projects/${game}/logo.png`;
+    icon.alt = game;
+    const name = document.createElement("span");
+    name.textContent = game;
+    const star = document.createElement("button");
+    star.innerHTML = favorites.has(game) ? "★" : "☆";
+    star.onclick = () => {
+      if (favorites.has(game)) favorites.delete(game);
+      else favorites.add(game);
+      filterGames();
+    };
+    card.appendChild(icon);
+    card.appendChild(name);
+    card.appendChild(star);
+    card.onclick = () => {
+      window.open(`/projects/${game}/index.html`, "_blank");
+    };
+    grid.appendChild(card);
+  });
 }
 
+renderTabs();
 renderGames();
-renderPagination();
 </script>
 
 </body>
